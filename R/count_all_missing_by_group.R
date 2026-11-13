@@ -12,6 +12,8 @@
 #' a wrapper around the `group_by()` and
 #' `summarize()` functions in the `dplyr` package.
 #'
+#' @importFrom dplyr group_by summarize across everything
+#'
 #' @param data Data in data.frame or tibble format
 #' @param group_col Column in `data` to group by
 #' @param .groups (OPTIONAL) Controls whether the
@@ -24,7 +26,12 @@
 #' @return A data frame or tibble with the
 #' levels of `group`, and the  number of NAs within
 #' each level of `group` for all columns in
-#' `data` except `group`.
+#' `data` except `group`
+#'
+#' @examples
+#' library(dplyr)
+#' airquality |> count_all_missing_by_group(Month)
+#' count_all_missing_by_group(airquality, Month, .groups = "keep")
 #' @export
 count_all_missing_by_group <- function(data, group_col, .groups = "drop") {
 
@@ -37,7 +44,7 @@ count_all_missing_by_group <- function(data, group_col, .groups = "drop") {
     }
   }
 
-  data |> group_by({{ group_col }}) |>
-    summarize(across(everything(), ~sum(is.na(.x))),
+  data |> dplyr::group_by({{ group_col }}) |>
+    dplyr::summarize(dplyr::across(dplyr::everything(), ~sum(is.na(.x))),
               .groups = .groups)
 }

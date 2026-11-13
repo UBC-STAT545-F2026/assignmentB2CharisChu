@@ -1,0 +1,49 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# assignmentB2CharisChu
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of assignmentB2CharisChu is to allow users to easily see missing values in data to determine if datasets are suitable for analysis.
+
+## Installation
+
+You can install the development version of assignmentB2CharisChu from [GitHub](https://github.com/) with:
+
+``` r
+devtools::install_github("UBC-STAT545-F2026/assignmentB2CharisChu, ref = "0.1.0")
+```
+
+## Example
+
+This is a basic example which shows you how to use the `count_all_missing_by_group` function from the `assignmentB2CharisChu` package.
+
+```{r example}
+library(tidyverse)
+library(palmerpenguins)
+library(assignmentB2CharisChu)
+# Compute the number of missing values in the `airquality` dataset grouped by the `cyl` column.
+count_all_missing_by_group(airquality, Month)
+
+# This example has the same output as the last example, but shows off an alternative way of invoking the `count_all_missing_by_group()`: piping the dataset into the function.
+airquality |> count_all_missing_by_group(Month)
+
+# The optional `.groups` argument allows us to keep the output grouped by the grouping column. See example below; notice how the output is a grouped tibble, rather than the ungrouped tibble output of the earlier examples.
+count_all_missing_by_group(airquality, Month, .groups = "keep")
+```
+
+
