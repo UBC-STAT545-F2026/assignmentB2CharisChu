@@ -17,7 +17,7 @@ You can install the development version of assignmentB2CharisChu from
 [GitHub](https://github.com/) with:
 
 ``` r
-devtools::install_github("UBC-STAT545-F2026/assignmentB2CharisChu, ref = "0.1.0")
+devtools::install_github("UBC-STAT545-F2026/assignmentB2CharisChu", ref = "0.1.0")
 ```
 
 ## Example
